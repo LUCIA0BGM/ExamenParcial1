@@ -23,6 +23,10 @@ def main():
     print("Intentos       :", resultados['pasos'])
     print("Posiciones     :", solucion)
 
+    # Depuración: imprimir los datos antes de enviarlos
+    print("\n[Cliente] Enviando datos al servidor:")
+    print(f"Datos a enviar: Juego - 'nreinas', Resultados - {resultados}")
+
     # Enviar al servidor
     print("\nEnviando resultado al servidor...")
     enviar_resultado("nreinas", resultados, callback=lambda r: print("[Servidor]:", r))

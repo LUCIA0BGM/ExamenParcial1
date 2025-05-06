@@ -21,6 +21,9 @@ def manejar_cliente(conn, addr):
                 if not data:
                     break
 
+                # Imprimir los datos recibidos
+                print(f"[Servidor] Datos recibidos: {data.decode()}")
+                
                 mensaje = json.loads(data.decode())
 
                 juego = mensaje.get("juego")
