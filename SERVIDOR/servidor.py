@@ -31,6 +31,7 @@ def manejar_cliente(conn, addr):
 
                 print(f"[{addr}] Datos recibidos para juego: {juego} -> {datos}")
 
+                # Manejo de los diferentes juegos
                 if juego == "nreinas":
                     resultado = ResultadoNReinas(**datos)
                     session.add(resultado)
@@ -38,13 +39,14 @@ def manejar_cliente(conn, addr):
                     resultado = ResultadoCaballo(**datos)
                     session.add(resultado)
                 elif juego == "hanoi":
-                    resultado = ResultadoHanoi(**datos)
+                    # Ajusta los datos según los campos de ResultadoHanoi
+                    resultado = ResultadoHanoi(discos=datos["discos"], movimientos=datos["movimientos"], resuelto=datos["resuelto"])
                     session.add(resultado)
                 else:
                     print(f"[!] Juego desconocido: {juego}")
                     continue
 
-                session.commit()
+                session.commit()  # Guardar en la base de datos
                 conn.sendall(b"Resultado guardado correctamente")
     except Exception as e:
         print(f"[ERROR] {e}")

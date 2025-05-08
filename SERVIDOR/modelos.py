@@ -26,8 +26,13 @@ class ResultadoCaballo(Base):
 
 class ResultadoHanoi(Base):
     __tablename__ = 'resultados_hanoi'
+
     id = Column(Integer, primary_key=True)
-    discos = Column(Integer)
-    movimientos = Column(Integer)
-    resuelto = Column(Boolean)
-    fecha = Column(DateTime, default=datetime.now)
+    discos = Column(Integer)  # Número de discos
+    movimientos = Column(Integer)  # Número de movimientos realizados
+    resuelto = Column(Boolean)  # Si el juego fue resuelto o no
+
+    def __init__(self, discos, movimientos, resuelto):
+        self.discos = discos
+        self.movimientos = movimientos
+        self.resuelto = resuelto
