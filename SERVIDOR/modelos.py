@@ -18,11 +18,14 @@ class ResultadoNReinas(Base):
 
 class ResultadoCaballo(Base):
     __tablename__ = 'resultados_caballo'
+
     id = Column(Integer, primary_key=True)
-    posicion_inicial = Column(String)
-    movimientos = Column(Integer)
-    completo = Column(Boolean)
-    fecha = Column(DateTime, default=datetime.now)
+    movimientos = Column(Integer)  # Número de movimientos realizados
+    resuelto = Column(Boolean)  # Si el recorrido fue completado o no
+
+    def __init__(self, movimientos, resuelto):
+        self.movimientos = movimientos
+        self.resuelto = resuelto
 
 class ResultadoHanoi(Base):
     __tablename__ = 'resultados_hanoi'
